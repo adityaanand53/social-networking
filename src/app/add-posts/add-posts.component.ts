@@ -3,7 +3,7 @@ import { take } from 'rxjs/operators';
 import { PostFormData, User } from '../common/interfaces';
 import { PostsService } from '../services/posts.service';
 import { RestAPIService } from '../services/rest-api.service';
-import { UserService } from '../services/user.service';
+import { AppDataService } from '../services/app-data.service';
 
 @Component({
   selector: 'app-add-posts',
@@ -15,10 +15,10 @@ export class AddPostsComponent implements OnInit {
   public mediaFile = '';
   public userData: User;
 
-  constructor(private apiHandler: RestAPIService, private userService: UserService, private postService: PostsService) { }
+  constructor(private apiHandler: RestAPIService, private appService: AppDataService, private postService: PostsService) { }
 
   ngOnInit(): void {
-    this.userService.userData.subscribe(data => {
+    this.appService.userData.subscribe(data => {
       if (data) this.userData = data;
     })
 
@@ -31,15 +31,15 @@ export class AddPostsComponent implements OnInit {
       fileUrl: this.mediaFile,
       user: this.userData.id
     }
-    this.userService.setIsLoading(true);
+    this.appService.setIsLoading(true);
     this.apiHandler.createNewPost(postData).pipe(take(1)).subscribe(async (res) => {
       this.mediaFile = '';
       this.description = '';
       const allPosts = await this.apiHandler.getPosts().toPromise();
       this.postService.updatePosts(allPosts);
-      this.userService.setIsLoading(false);
+      this.appService.setIsLoading(false);
     }, err => {
-      this.userService.setIsLoading(false);
+      this.appService.setIsLoading(false);
     });
   }
 

@@ -5,7 +5,7 @@ import { User } from '../common/interfaces';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AppDataService {
   private userSource = new BehaviorSubject<User>(null);
   public userData = this.userSource.asObservable();
 

@@ -32,17 +32,11 @@ export class RestAPIService {
   }
 
   createNewPost(postData: PostFormData) {
-    // const formData = new FormData();
-    // formData.append('mediaContent', file);
-    // formData.append('description', postData.description);
-    // formData.append('likedBy', postData.likedBy);
-    // const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
-
     return this.http.post(`${environment.apiUrl}/posts`, postData);
   }
 
   updateLikeStatus(postId: number, likedByUserId: number) {
-    this.http.post(`${environment.apiUrl}/posts/${postId}/${likedByUserId}`, {});
+    return this.http.post(`${environment.apiUrl}/posts/${postId}/${likedByUserId}`, {});
   }
 
   updateFriendStatus(userId: number, friendUserId: number) {

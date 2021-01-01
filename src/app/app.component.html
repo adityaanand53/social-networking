@@ -1,4 +1,4 @@
-<ng-container *ngIf="(userService.userData | async) || {}; let user">
+<ng-container *ngIf="(appService.userData | async) || {}; let user">
   <app-login *ngIf="!user.email && !(isLoading)"></app-login>
   <ng-container *ngIf="user.email">
     <app-add-posts></app-add-posts>

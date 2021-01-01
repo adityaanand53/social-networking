@@ -6,7 +6,7 @@ import { LoginResponse, RegisterResponse } from '../common/interfaces';
 import { take } from 'rxjs/operators';
 import { RestAPIService } from '../services/rest-api.service';
 import { loginConfig } from './login.config';
-import { UserService } from '../services/user.service';
+import { AppDataService } from '../services/app-data.service';
 
 export const FORM_CONFIGS = {
   loginForm: loginConfig,
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   public formGroup: FormGroup;
   public formConfig: any = FORM_CONFIGS;
 
-  constructor(public fb: FormBuilder, private apiService: RestAPIService, private userService: UserService) { }
+  constructor(public fb: FormBuilder, private apiService: RestAPIService, private appService: AppDataService) { }
 
   ngOnInit(): void {
     this.getFormGroup()
@@ -34,15 +34,15 @@ export class LoginComponent implements OnInit {
   }
 
   public loginHandler() {
-    this.userService.setIsLoading(true);
+    this.appService.setIsLoading(true);
     if (this.isNewAccount) {
       this.apiService.createNewUser(this.formGroup.value).pipe(take(1)).subscribe((res: RegisterResponse) => {
         if (res && res.success) {
           this.isNewAccount = false;
         }
-        this.userService.setIsLoading(false);
+        this.appService.setIsLoading(false);
       }, err => {
-        this.userService.setIsLoading(false);
+        this.appService.setIsLoading(false);
         console.log(err);
       })
     } else  {
@@ -50,11 +50,11 @@ export class LoginComponent implements OnInit {
         if (res && res.success) {
           sessionStorage.setItem("token", res.token);
           const userData = await this.apiService.getUserData(res.id).toPromise();
-          this.userService.updateUserData(userData);
+          this.appService.updateUserData(userData);
         }
-        this.userService.setIsLoading(false);
+        this.appService.setIsLoading(false);
       }, err => {
-        this.userService.setIsLoading(false);
+        this.appService.setIsLoading(false);
         console.log(err);
       })
     }

@@ -1,4 +1,10 @@
 <ng-container *ngFor="let post of posts">
   <p>{{post.description}}</p>
   <img [src]="post.fileUrl" alt="post" class="img-post">
+  <span class="material-icons favorite" *ngIf="post.likedBy[userData.id]" (click)="likeHandler(post)">
+    favorite
+  </span>
+  <span class="material-icons favorite" *ngIf="!post.likedBy[userData.id]" (click)="likeHandler(post)">
+    favorite_border
+  </span>
 </ng-container>

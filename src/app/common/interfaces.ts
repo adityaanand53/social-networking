@@ -12,7 +12,7 @@ export interface Posts {
   id: number;
   description: string;
   user: User;
-  likedBy: Number[];
+  likedBy: any;
   published_at: string;
   created_at: string;
   updated_at: string;

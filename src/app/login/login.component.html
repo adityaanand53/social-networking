@@ -1,0 +1,41 @@
+<div>
+  <form [formGroup]="formGroup" autocomplete="off">
+    <h2>Login</h2>
+    <ng-container *ngIf="isNewAccount">
+      <mat-form-field class="input-field">
+        <mat-label>Name</mat-label>
+        <input matInput class="" formControlName='name'>
+        <mat-error *ngIf="">
+          <!-- {{serializedErrors?.videoLink}} -->
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="input-field">
+        <mat-label>Username</mat-label>
+        <input matInput class="" formControlName='username'>
+        <mat-error *ngIf="">
+          <!-- {{serializedErrors?.videoLink}} -->
+        </mat-error>
+      </mat-form-field>
+    </ng-container>
+
+    <mat-form-field class="input-field">
+      <mat-label>Email</mat-label>
+      <input matInput class="" formControlName='email'>
+      <mat-error *ngIf="">
+        <!-- {{serializedErrors?.videoLink}} -->
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-field">
+      <mat-label>Password</mat-label>
+      <input matInput class="" formControlName='password'>
+      <mat-error *ngIf="">
+        <!-- {{serializedErrors?.videoLink}} -->
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button (click)="loginHandler()" class="btn">{{isNewAccount ? 'Register' : 'Login'}}</button>
+    <button mat-button (click)="isNewAccount = !isNewAccount" class="btn">{{isNewAccount ? 'Back To Login' :'Create New Account'}}</button>
+  </form>
+</div>

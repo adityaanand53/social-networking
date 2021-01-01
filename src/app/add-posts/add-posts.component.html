@@ -1,0 +1,24 @@
+  <mat-form-field class="input-field">
+    <mat-label>What's on your mind?</mat-label>
+    <input matInput class="" [(ngModel)]="description">
+    <mat-error *ngIf="">
+      <!-- {{serializedErrors?.videoLink}} -->
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-field">
+    <mat-label>Add Photo</mat-label>
+    <input matInput class="" [(ngModel)]="mediaFile">
+    <mat-error *ngIf="">
+      <!-- {{serializedErrors?.videoLink}} -->
+    </mat-error>
+  </mat-form-field>
+  <!-- <input type="file" name="files" id="inputFile"  [(ngModel)]="file" /> -->
+
+  <img *ngIf="checkURL(mediaFile) === 'img'" [src]="mediaFile" alt="post-media" class="img-post">
+  <video *ngIf="checkURL(mediaFile) === 'video'" width="320" height="240" controls>
+    <source [src]="mediaFile" type="video/mp4" class="video-source">
+  </video>
+  <!-- <input type="submit" value="Submit" /> -->
+  <button mat-button (click)="postHandler()">Post</button>
+

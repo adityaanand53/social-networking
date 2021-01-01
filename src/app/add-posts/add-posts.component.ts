@@ -25,6 +25,10 @@ export class AddPostsComponent implements OnInit {
   }
 
   postHandler() {
+    if (!this.mediaFile && !this.description) {
+      alert('Write something or add an image or video!')
+      return;
+    }
     const postData: PostFormData = {
       description: this.description,
       likedBy: [],

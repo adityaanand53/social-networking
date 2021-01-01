@@ -1,8 +1,17 @@
-.img-post {
-  width: 30vw;
+.view-container {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  border-top: 1px solid #999;
+  margin-top: 10px;
+  .img-post {
+    width: 30vw;
+    margin: auto;
+  }
+  .favorite {
+    color: red;
+    cursor: pointer;
+    border-bottom: 1px solid #999;
+    padding-bottom: 10px;
+  }
 }
-.favorite {
-  color: red;
-  cursor: pointer;
-}
-

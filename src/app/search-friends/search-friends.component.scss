@@ -1,0 +1,25 @@
+.tile-container {
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  .tile {
+    border: 1px solid #999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    padding: 10px;
+    margin: 10px;
+  }
+  .profile-icon {
+    text-align: center;
+    span {
+      border: 1px solid #999;
+      border-radius: 20px;
+      font-size: 40px;
+    }
+  }
+}
+.input-field {
+  margin: auto;
+}

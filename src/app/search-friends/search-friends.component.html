@@ -1,0 +1,19 @@
+<mat-form-field class="input-field">
+  <mat-label>Search</mat-label>
+  <input matInput [value]="search" (keyup)="searchFriend$.next($event.target.value)">
+  <mat-error *ngIf="">
+    <!-- {{serializedErrors?.videoLink}} -->
+  </mat-error>
+</mat-form-field>
+<div class="tile-container">
+
+  <div *ngFor="let user of users" class="tile">
+    <div class="profile-icon">
+      <span class="material-icons">
+        person
+      </span>
+    </div>
+    <p>{{user.name | titlecase}}</p>
+    <button mat-button class="btn" (click)="addFreindHandler(user.id)">Add Friend</button>
+  </div>
+</div>

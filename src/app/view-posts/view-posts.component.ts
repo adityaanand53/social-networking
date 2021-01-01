@@ -33,6 +33,9 @@ export class ViewPostsComponent implements OnInit {
   }
 
   likeHandler(post: Posts) {
+    if (!post.likedBy) {
+      post.likedBy = {};
+    }
     post.likedBy[this.userData.id] = !post.likedBy[this.userData.id];
     this.apiService.updateLikeStatus(post.id, this.userData.id).subscribe((res: any) => {
       if (res && res.success) {

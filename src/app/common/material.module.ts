@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card'
 // MatAutocompleteModule,
 // MatBadgeModule,
 // MatBottomSheetModule,
@@ -50,7 +51,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   exports: [
-
+    MatCardModule,
     MatButtonModule,
 
     MatInputModule,

@@ -16,7 +16,7 @@ export class RestAPIService {
   }
 
   getAllUsers() {
-    return this.http.get(`${environment.apiUrl}/users`);
+    return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
   getUserData(id: number): Observable<User> {
@@ -39,7 +39,12 @@ export class RestAPIService {
     return this.http.post(`${environment.apiUrl}/posts/${postId}/${likedByUserId}`, {});
   }
 
-  updateFriendStatus(userId: number, friendUserId: number) {
-    this.http.post(`${environment.apiUrl}/users/${userId}/${friendUserId}`, {});
+  updateFriendStatus(friendUserId: number) {
+    return this.http.post(`${environment.apiUrl}/friends/${friendUserId}`, {});
+  }
+
+  searchFriends(searchBy: string) {
+    if (!searchBy) searchBy = '~';
+    return this.http.get<User[]>(`${environment.apiUrl}/friends/search/${searchBy}`, {});
   }
 }

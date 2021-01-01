@@ -1,9 +1,19 @@
+<app-header></app-header>
 <ng-container *ngIf="(appService.userData | async) || {}; let user">
   <app-login *ngIf="!user.email && !(isLoading)"></app-login>
-  <ng-container *ngIf="user.email">
-    <app-add-posts></app-add-posts>
-    <app-view-posts></app-view-posts>
-  </ng-container>
+  <div class="app-container" *ngIf="user.email">
+    <section class="left-nav">
+      <app-profile></app-profile>
+    </section>
+    <section class="center">
 
+      <app-add-posts></app-add-posts>
+      <app-view-posts></app-view-posts>
+    </section>
+    <section class="right-nav">
+      <app-search-friends></app-search-friends>
+    </section>
+  </div>
 </ng-container>
 <mat-spinner *ngIf="isLoading" class="loader" diameter="50"></mat-spinner>
+<p><a target="_blank" href="https://icons8.com/icons/set/social-network">Social Network icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></p>

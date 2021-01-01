@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-header class="top-panel"> <mat-card-title>Hey, {{userData.username}}</mat-card-title></mat-card-header>
+  <mat-card-content>
+    <div class="profile-icon">
+      <span class="material-icons">
+        person
+      </span>
+    </div>
+
+    <p class="bold">{{userData.name | titlecase}}</p>
+    <p>{{userData.introduction}}</p>
+  </mat-card-content>
+
+</mat-card>

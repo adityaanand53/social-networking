@@ -2,11 +2,11 @@ export interface User {
   id?: number;
   name?: string;
   email: string;
-  freinds?: Number[];
   username: string;
   published_at?: Date;
   created_at?: Date;
   updated_at?: Date;
+  introduction?: string;
 }
 export interface Posts {
   id: number;

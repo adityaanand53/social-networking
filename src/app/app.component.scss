@@ -8,14 +8,13 @@
   }
   .center {
     padding: 10px;
+    box-shadow: 1px 0px 4px rgba(0,0,0,0.8);
     border-left: 1px solid #999;
     border-right: 1px solid #999;
     border-bottom: 1px solid #999;
   }
   .right-nav {
-    // position: sticky;
-    // top: 79px;
-    // align-self: flex-start;
+    width: 40vw;
   }
 }
 .footer {

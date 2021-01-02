@@ -21,6 +21,13 @@
   .post-controls {
     border-bottom: 1px solid #999;
     padding-bottom: 10px;
+    .align-text {
+      display: inline-block;
+      vertical-align: super;
+      font-size: 14px;
+      color: #555;
+      cursor: default;
+    }
     span {
       cursor: pointer;
       margin-right: 10px;

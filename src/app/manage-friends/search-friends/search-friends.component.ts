@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { combineLatest, Subject } from 'rxjs';
+import { combineLatest, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, take } from 'rxjs/operators';
 
 import { CONSTANTS } from 'src/app/common/constants';
@@ -14,15 +14,23 @@ import { RestAPIService } from '../../services/rest-api.service';
   templateUrl: './search-friends.component.html',
   styleUrls: ['./search-friends.component.scss']
 })
-export class SearchFriendsComponent implements OnInit {
+export class SearchFriendsComponent implements OnInit, OnDestroy {
   public users: User[];
   public search = '';
   public searchFriend$ = new Subject<string>();
+  private subscription: Subscription;
   constructor(private apiService: RestAPIService, private appService: AppDataService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getFriendSuggestions();
     this.searchFriends();
+  }
+
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   public addFriendHandler(freindId: number) {
@@ -45,8 +53,8 @@ export class SearchFriendsComponent implements OnInit {
     }, () => this.appService.setIsLoading(false))
   }
 
-  public searchFriends() {
-    this.searchFriend$.pipe(
+  private searchFriends() {
+    this.subscription = this.searchFriend$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       switchMap(query => this.apiService.searchFriends(query))

@@ -1,32 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { PostFormData, User } from '../../common/interfaces';
 import { RestAPIService } from '../../services/rest-api.service';
 import { AppDataService } from '../../services/app-data.service';
+import { CONSTANTS } from 'src/app/common/constants';
 
 @Component({
   selector: 'app-add-posts',
   templateUrl: './add-posts.component.html',
   styleUrls: ['./add-posts.component.scss']
 })
-export class AddPostsComponent implements OnInit {
+export class AddPostsComponent implements OnInit, OnDestroy {
   public description = '';
   public mediaFile = '';
   public userData: User;
-
-  constructor(private apiHandler: RestAPIService, private appService: AppDataService) { }
+  private subscription: Subscription;
+  constructor(private apiHandler: RestAPIService, private appService: AppDataService, private snackBar: MatSnackBar ) { }
 
   ngOnInit(): void {
-    this.appService.userData.subscribe(data => {
+    this.subscription = this.appService.userData.subscribe(data => {
       if (data) this.userData = data;
-    })
-
+    });
   }
 
-  postHandler() {
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  postHandler(): void {
     if (!this.mediaFile && !this.description) {
-      alert('Write something or add an image or video!')
+      this.snackBar.open(CONSTANTS.POST_VALIDATION_MSG, 'Okay', {
+        duration: 5000
+      });
       return;
     }
     const postData: PostFormData = {

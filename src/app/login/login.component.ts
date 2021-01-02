@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-
-import { ErrorResponse, LoginResponse, RegisterResponse } from '../common/interfaces';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { LoginResponse, RegisterResponse } from '../common/interfaces';
 import { RestAPIService } from '../services/rest-api.service';
 import { loginConfig } from './login.config';
 import { AppDataService } from '../services/app-data.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { CONSTANTS } from '../common/constants';
 
 export const FORM_CONFIGS = {

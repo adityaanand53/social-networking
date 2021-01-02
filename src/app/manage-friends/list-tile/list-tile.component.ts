@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { User } from 'src/app/common/interfaces';
 
 @Component({

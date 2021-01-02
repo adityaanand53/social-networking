@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
+
 import { User } from 'src/app/common/interfaces';
 import { AppDataService } from 'src/app/services/app-data.service';
 import { RestAPIService } from 'src/app/services/rest-api.service';
@@ -13,12 +14,19 @@ import { RestAPIService } from 'src/app/services/rest-api.service';
 export class ListFriendsComponent implements OnInit {
 
   public users: User[];
+  private subscription: Subscription;
 
   constructor(private appService: AppDataService, private apiService: RestAPIService) { }
 
   ngOnInit(): void {
     this.loadFriends();
     this.listFriends();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   public removeFriendHandler(id: number) {
@@ -40,7 +48,7 @@ export class ListFriendsComponent implements OnInit {
   }
 
   private listFriends() {
-    combineLatest([this.appService.userData, this.appService.friendsData])
+    this.subscription = combineLatest([this.appService.userData, this.appService.friendsData])
       .subscribe(([userData, friendsData]) => {
         if (userData) {
           this.users = friendsData;

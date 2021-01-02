@@ -1,21 +1,24 @@
 .list-tile {
   display: flex;
   flex-wrap: wrap;
+  margin-right: 10px;
   .tile {
-    border: 1px solid #999;
-    border-radius: 3px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 120px;
-    padding: 7px;
-    margin: 7px;
+    width: 100%;
+    .text-span {
+      margin-left: 10px;
+    }
+    .btn {
+      margin-left: auto;
+    }
     .profile-icon {
-      text-align: center;
+      text-align: left;
       span {
         border: 1px solid #999;
         border-radius: 20px;
         font-size: 40px;
+        color: #3fb291;
       }
     }
   }

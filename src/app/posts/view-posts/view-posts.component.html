@@ -18,6 +18,7 @@
         (click)="likeHandler(post)">
         favorite_border
       </span>
+      <span class="align-text lighten">{{likeCount(post.likedBy)}}</span>
       <span class="material-icons" title="Delete" (click)="deletePostHandler(post.id)">
         delete
       </span>

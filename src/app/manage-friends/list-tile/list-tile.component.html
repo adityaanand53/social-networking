@@ -6,7 +6,7 @@
           person
         </span>
       </div>
-      <p>{{user.name | titlecase}}</p>
+      <p class="text-span">{{user.name | titlecase}}</p>
       <button mat-button *ngIf="!isFriends" class="btn" (click)="addFreindHandler(user.id)">Add Friend</button>
       <button mat-button *ngIf="isFriends" class="btn" (click)="removeFreindHandler(user.friendId)">Unfriend</button>
     </div>

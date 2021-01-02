@@ -4,8 +4,5 @@
     <mat-label>Search</mat-label>
     <input matInput [value]="search" (keyup)="searchFriend$.next($event.target.value)">
   </mat-form-field>
-  <div class="tile-container">
-    <app-list-tile (addFriendEvent)="addFriendHandler($event)" [isFriends]="false" [users]="users"></app-list-tile>
-  </div>
+  <app-list-tile (addFriendEvent)="addFriendHandler($event)" [isFriends]="false" [users]="users"></app-list-tile>
 </section>
-

@@ -31,7 +31,7 @@ export class AddPostsComponent implements OnInit {
     }
     const postData: PostFormData = {
       description: this.description,
-      likedBy: [],
+      likedBy: {},
       fileUrl: this.mediaFile,
       user: this.userData.id
     }
@@ -48,7 +48,7 @@ export class AddPostsComponent implements OnInit {
   }
 
   public checkURL(url) {
-    if (url && url.match(/\.(jpeg|jpg|gif|png)$/)) {
+    if (url && url.match(/\.(jpeg|jpg|gif|png|svg)$/)) {
       return 'img';
     } else if (url && url.match(/\.(mp4)$/)) {
       return 'video';

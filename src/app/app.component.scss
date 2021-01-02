@@ -4,10 +4,14 @@
     width: 15em;
   }
   .center {
-    margin: 10px;
+    padding: 10px;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
   }
   .right-nav {
-
   }
 }
-
+.footer {
+  position: absolute;
+  left: calc(100vw - 265px);
+}

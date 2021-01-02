@@ -12,7 +12,7 @@ export class RestAPIService {
   constructor(private http: HttpClient) { }
 
   getPosts(): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/users/posts`);
+    return this.http.get<Posts[]>(`${environment.apiUrl}/users/posts`);
   }
 
   getAllUsers() {

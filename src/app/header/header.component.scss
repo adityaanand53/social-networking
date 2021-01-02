@@ -1,13 +1,14 @@
 .header-container {
   border-bottom: 1px solid #999;
-  margin: 2px;
+  padding: 4px;
+  height: 70px;
   .title {
     font-size: 30px;
     display: inline-block;
     bottom: 20px;
     position: relative;
     margin-left: 14px;
-    padding-left: 14px;
+    padding: 10px 14px;
     border-left: 1px solid #999;
   }
 }

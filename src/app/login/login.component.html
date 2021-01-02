@@ -1,46 +1,50 @@
-<div>
-  <form [formGroup]="formGroup" autocomplete="off">
-    <div class="form-container">
-      <h2>Login</h2>
-      <ng-container *ngIf="isNewAccount">
-        <mat-form-field class="input-field">
-          <mat-label>Name</mat-label>
-          <input matInput class="" formControlName='name'>
-          <mat-error *ngIf="">
-            <!-- {{serializedErrors?.videoLink}} -->
-          </mat-error>
-        </mat-form-field>
+<form [formGroup]="formGroup" autocomplete="off" class="form-layout">
 
-        <mat-form-field class="input-field">
-          <mat-label>Username</mat-label>
-          <input matInput class="" formControlName='username'>
-          <mat-error *ngIf="">
-            <!-- {{serializedErrors?.videoLink}} -->
-          </mat-error>
-        </mat-form-field>
-      </ng-container>
-
-      <mat-form-field class="input-field">
-        <mat-label>Email</mat-label>
-        <input matInput class="" formControlName='email' type="email">
-        <mat-error *ngIf="">
-          <!-- {{serializedErrors?.videoLink}} -->
+  <div class="form-container">
+    <h2>{{isNewAccount ? 'Register' : 'Login'}}</h2>
+    <ng-container *ngIf="isNewAccount">
+      <mat-form-field class="input-field" errorState="false">
+        <mat-label>Name</mat-label>
+        <input matInput class="" formControlName='name'>
+        <mat-error *ngIf="ctrls.name.invalid && ctrls.name.touched">
+          {{serializedErrors?.name}}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="input-field">
-        <mat-label>Password</mat-label>
-        <input matInput class="" formControlName='password' type="password">
-        <mat-error *ngIf="">
-          <!-- {{serializedErrors?.videoLink}} -->
+        <mat-label>Username</mat-label>
+        <input matInput class="" formControlName='username'>
+        <mat-error *ngIf="ctrls.username.invalid && ctrls.username.touched">
+          {{serializedErrors?.username}}
         </mat-error>
       </mat-form-field>
+    </ng-container>
 
-      <button mat-button (click)="loginHandler()" class="btn">{{isNewAccount ? 'Register' : 'Login'}}</button>
-      <button mat-button (click)="isNewAccount = !isNewAccount" class="btn">
-        {{isNewAccount ? 'Back To Login' :'Create New Account'}}
-      </button>
-    </div>
+    <mat-form-field class="input-field">
+      <mat-label>Email</mat-label>
+      <input matInput class="" formControlName='email' type="email">
+      <mat-error *ngIf="ctrls.email.invalid && ctrls.email.touched">
+        {{serializedErrors?.email}}
+      </mat-error>
+    </mat-form-field>
 
-  </form>
-</div>
+    <mat-form-field class="input-field">
+      <mat-label>Password</mat-label>
+      <input matInput class="" formControlName='password' type="password">
+      <mat-error *ngIf="ctrls.password.invalid && ctrls.password.touched">
+        {{serializedErrors?.password}}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button (click)="loginHandler()" class="btn">{{isNewAccount ? 'Register' : 'Login'}}</button>
+    <button mat-button (click)="createAccountHandler()" class="btn" type="button">
+      {{isNewAccount ? 'Back To Login' :'Create New Account'}}
+    </button>
+  </div>
+
+</form>
+<section class="footer">
+  <p>Connect with friends</p>
+  <p>Share posts</p>
+  <p>Like</p>
+</section>

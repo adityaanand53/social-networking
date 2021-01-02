@@ -17,14 +17,18 @@ export interface Posts {
   created_at: string;
   updated_at: string;
   fileUrl: string;
-  mediaContent: MediaContent[];
+  // mediaContent: MediaContent[];
 }
 
 export interface PostFormData {
   description: string;
-  likedBy: number[];
+  likedBy: LikedBy;
   fileUrl: string;
   user: number;
+}
+
+export interface LikedBy {
+  [key: number]: boolean;
 }
 
 export interface Format {
@@ -56,13 +60,17 @@ export interface MediaContent {
   updated_at: Date;
 }
 
-export interface LoginResponse {
+export interface LoginResponse extends ErrorResponse {
   success: string;
   token: string;
   username: string;
   id: number;
 }
 
-export interface RegisterResponse {
+export interface ErrorResponse {
+  message: string;
+}
+
+export interface RegisterResponse extends ErrorResponse {
   success: string;
 }

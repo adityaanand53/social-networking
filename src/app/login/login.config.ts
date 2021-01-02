@@ -6,7 +6,7 @@ export interface FormConfig {
 
 export function formGroup(fb: FormBuilder, formData): FormGroup {
   return fb.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
     username: ['', []],
     name: ['', []],

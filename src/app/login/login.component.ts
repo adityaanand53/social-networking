@@ -96,7 +96,6 @@ export class LoginComponent implements OnInit {
       }
       this.appService.setIsLoading(false);
     }, err => {
-
       this.snackBar.open((err.error && err.error.message) || CONSTANTS.DEFAULT_ERROR, 'Okay', {
         duration: 5000
       })

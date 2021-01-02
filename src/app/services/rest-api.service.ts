@@ -11,16 +11,21 @@ export class RestAPIService {
 
   constructor(private http: HttpClient) { }
 
-  getPosts(): Observable<any> {
-    return this.http.get<Posts[]>(`${environment.apiUrl}/users/posts`);
-  }
-
-  getAllUsers() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
-  }
-
+  // user APIs
   getUserData(id: number): Observable<User> {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+  }
+
+  getPosts(start: number): Observable<any> {
+    return this.http.get<Posts[]>(`${environment.apiUrl}/users/posts?start=${start}`);
+  }
+
+  getFriendSuggestions() {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/suggestions`);
+  }
+
+  getFriends() {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/friend`);
   }
 
   authenticateUser(userData: User) {
@@ -31,16 +36,26 @@ export class RestAPIService {
     return this.http.post(`${environment.apiUrl}/users/register`, userData);
   }
 
+  // posts APIs
   createNewPost(postData: PostFormData) {
     return this.http.post(`${environment.apiUrl}/posts`, postData);
+  }
+
+  deletePost(postId: number) {
+    return this.http.delete(`${environment.apiUrl}/posts/${postId}`);
   }
 
   updateLikeStatus(postId: number, likedByUserId: number) {
     return this.http.post(`${environment.apiUrl}/posts/${postId}/${likedByUserId}`, {});
   }
 
-  updateFriendStatus(friendUserId: number) {
+  // friends APIs
+  addFriend(friendUserId: number) {
     return this.http.post(`${environment.apiUrl}/friends/${friendUserId}`, {});
+  }
+
+  deleteFriend(friendRecordId: number) {
+    return this.http.delete(`${environment.apiUrl}/friends/${friendRecordId}`);
   }
 
   searchFriends(searchBy: string) {

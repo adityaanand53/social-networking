@@ -1,14 +1,21 @@
 .app-container {
   display: flex;
   .left-nav {
-    width: 15em;
+    width: 30vw;
+    position: sticky;
+    top: 79px;
+    align-self: flex-start;
   }
   .center {
     padding: 10px;
     border-left: 1px solid #999;
     border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
   }
   .right-nav {
+    // position: sticky;
+    // top: 79px;
+    // align-self: flex-start;
   }
 }
 .footer {

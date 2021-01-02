@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { PostFormData, User } from '../common/interfaces';
-import { PostsService } from '../services/posts.service';
-import { RestAPIService } from '../services/rest-api.service';
-import { AppDataService } from '../services/app-data.service';
+
+import { PostFormData, User } from '../../common/interfaces';
+import { RestAPIService } from '../../services/rest-api.service';
+import { AppDataService } from '../../services/app-data.service';
 
 @Component({
   selector: 'app-add-posts',
@@ -15,7 +15,7 @@ export class AddPostsComponent implements OnInit {
   public mediaFile = '';
   public userData: User;
 
-  constructor(private apiHandler: RestAPIService, private appService: AppDataService, private postService: PostsService) { }
+  constructor(private apiHandler: RestAPIService, private appService: AppDataService) { }
 
   ngOnInit(): void {
     this.appService.userData.subscribe(data => {
@@ -39,8 +39,8 @@ export class AddPostsComponent implements OnInit {
     this.apiHandler.createNewPost(postData).pipe(take(1)).subscribe(async (res) => {
       this.mediaFile = '';
       this.description = '';
-      const allPosts = await this.apiHandler.getPosts().toPromise();
-      this.postService.updatePosts(allPosts);
+      const allPosts = await this.apiHandler.getPosts(0).toPromise();
+      this.appService.updatePosts(allPosts);
       this.appService.setIsLoading(false);
     }, err => {
       this.appService.setIsLoading(false);

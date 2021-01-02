@@ -7,17 +7,22 @@ export interface User {
   created_at?: Date;
   updated_at?: Date;
   introduction?: string;
+  friendId: number;
 }
-export interface Posts {
-  id: number;
+
+export interface Posts extends CommonDataFields {
   description: string;
   user: User;
   likedBy: any;
+  fileUrl: string;
+  // mediaContent: MediaContent[];
+}
+
+export interface CommonDataFields {
+  id: number;
   published_at: string;
   created_at: string;
   updated_at: string;
-  fileUrl: string;
-  // mediaContent: MediaContent[];
 }
 
 export interface PostFormData {
@@ -42,6 +47,8 @@ export interface Format {
   url: string;
 }
 
+
+
 export interface MediaFormat {
   thumbnail: Format;
   small: Format;
@@ -60,6 +67,10 @@ export interface MediaContent {
   updated_at: Date;
 }
 
+export interface ErrorResponse {
+  message: string;
+}
+
 export interface LoginResponse extends ErrorResponse {
   success: string;
   token: string;
@@ -67,10 +78,11 @@ export interface LoginResponse extends ErrorResponse {
   id: number;
 }
 
-export interface ErrorResponse {
-  message: string;
+export interface RegisterResponse extends ErrorResponse {
+  success: string;
 }
 
-export interface RegisterResponse extends ErrorResponse {
+export interface AddFriendResponse extends ErrorResponse {
+  data: CommonDataFields;
   success: string;
 }

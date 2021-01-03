@@ -8,7 +8,7 @@
   }
   .center {
     padding: 10px;
-    box-shadow: 1px 0px 4px rgba(0,0,0,0.8);
+    box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.8);
     border-left: 1px solid #999;
     border-right: 1px solid #999;
     border-bottom: 1px solid #999;
@@ -20,4 +20,17 @@
 .footer {
   position: absolute;
   left: calc(100vw - 265px);
+}
+
+@media only screen and (max-width: 600px) {
+  .app-container {
+    flex-direction: column;
+    .left-nav {
+      width: 100vw;
+      position: static;
+    }
+    .right-nav {
+      width: 100vw;
+    }
+  }
 }

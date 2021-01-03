@@ -46,11 +46,13 @@ export class SearchFriendsComponent implements OnInit, OnDestroy {
           duration: 5000
         });
       }
+      this.appService.setIsLoading(false);
     }, err => {
       this.snackBar.open(err.error.message || CONSTANTS.DEFAULT_ERROR, 'Okay', {
         duration: 5000
       });
-    }, () => this.appService.setIsLoading(false))
+      this.appService.setIsLoading(false);
+    })
   }
 
   private searchFriends() {

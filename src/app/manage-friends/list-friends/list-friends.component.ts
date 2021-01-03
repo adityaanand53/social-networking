@@ -30,12 +30,14 @@ export class ListFriendsComponent implements OnInit {
   }
 
   public removeFriendHandler(id: number) {
+    this.appService.setIsLoading(true);
     this.apiService.deleteFriend(id).pipe(take(1)).subscribe(async (res) => {
       if (res) {
         this.loadFriends();
         const allPosts = await this.apiService.getPosts(0).toPromise();
         this.appService.updatePosts(allPosts);
       }
+      this.appService.setIsLoading(false);
     })
   }
 

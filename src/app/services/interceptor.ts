@@ -8,10 +8,6 @@ export class APIInterceptor implements HttpInterceptor {
     const token = sessionStorage.getItem('token');
     if (token) {
       const authReq =req.clone({ setHeaders: {'x-access-token': token } });
-
-
-      console.log('Intercepted HTTP call', authReq);
-
       return next.handle(authReq);
     }
     return next.handle(req);

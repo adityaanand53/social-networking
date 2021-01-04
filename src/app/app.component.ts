@@ -9,7 +9,6 @@ import { AppDataService } from './services/app-data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public title = 'PB: Social Network';
   public isLoading = true;
   constructor(public appService: AppDataService, private apiService: RestAPIService) { }
 

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://52.172.217.188:1337'
+  apiUrl: 'http://socialnetwork.centralindia.cloudapp.azure.com:1337'
 };
 
 /*
